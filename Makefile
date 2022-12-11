@@ -1,11 +1,8 @@
 DIFF ?= diff --strip-trailing-cr -u
 PANDOC ?= pandoc
 
-test: sample.md multiple-bibliographies.lua
-	@$(PANDOC) \
-		--lua-filter=multiple-bibliographies.lua \
-		--standalone \
-		--to=native $< \
-	    | $(DIFF) - expected.native
+test: test/input.md multiple-bibliographies.lua
+	@$(PANDOC) -d test/test.yaml \
+	    | $(DIFF) - test/expected.txt
 
 .PHONY: test

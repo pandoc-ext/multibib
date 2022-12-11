@@ -1,0 +1,5 @@
+input-files: ['test/input.md']
+to: plain
+standalone: true
+filters:
+  - multiple-bibliographies.lua
