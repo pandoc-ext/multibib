@@ -1,33 +1,37 @@
 # multiple-bibliographies
 
 This filter allows to create multiple bibliographies using
-`pandoc-citeproc`/`citeproc`. The content of each bibliography is controlled
-via YAML values and the file in which a bibliographic entry is
+`citeproc`. The content of each bibliography is controlled via
+YAML values and the file in which a bibliographic entry is
 specified.
 
 ## Usage
 
-Instead of using the usual *bibliography* metadata field, all
-bibliographies must be defined via a separate field of the scheme
-*bibliographyX*, e.g.
+The bibliographies must be defined in a map below the
+`bibliography` key in the document's metadata. E.g.
 
-    ---
-    bibliography_main: main-bibliography.bib
-    bibliography_software: software.bib
-    ---
+```yaml
+---
+bibliography:
+  main: main-bibliography.bib
+  software: software.bib
+---
+```
 
 The placement of bibliographies is controlled via special divs.
 
-    # References
-    
-    ::: {#refs_main}
-    :::
-    
-    # Software
-    
-    ::: {#refs_software}
-    :::
+``` markdown
+# References
 
-Each refsX div should have a matching bibliographyX entry in the
-header. These divs are filled with citations from the respective
+::: {#refs-main}
+:::
+
+# Software
+
+::: {#refs-software}
+:::
+```
+
+Each refs-*x* div should have a matching entry *x* in the
+metadata. These divs are filled with citations from the respective
 bib-file.

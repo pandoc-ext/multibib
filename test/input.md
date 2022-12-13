@@ -1,17 +1,18 @@
 ---
 title: Multiple Bibliographies Demo
-bibliography_sources: test/primary.bib
-bibliography_recommended_reading: test/secondary.bib
+bibliography:
+  sources: test/primary.bib
+  recommended-reading: test/secondary.bib
 nocite: '@Knu86, @Bae'
 ---
 @Nie72, @Bel
 
 # References
 
-::: {#refs_sources}
+::: {#refs-sources}
 :::
 
 # Recommended Reading
 
-::: {#refs_recommended_reading}
+::: {#refs-recommended-reading}
 :::

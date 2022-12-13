@@ -1,7 +1,7 @@
 --[[
 multiple-bibliographies – create multiple bibliographies
 
-Copyright © 2018-2021 Albert Krewinkel
+Copyright © 2018-2022 Albert Krewinkel
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -62,14 +62,14 @@ end
 local function resolve_doc_citations (doc)
   -- combine all bibliographies
   local meta = doc.meta
-  local orig_bib = meta.bibliography
-  meta.bibliography = pandoc.MetaList{orig_bib}
-  for name, value in pairs(meta) do
-    if name:match('^bibliography_') then
-      table.insert(meta.bibliography, value)
+  local bibconf = meta.bibliography
+  meta.bibliography = pandoc.MetaList{}
+  if pandoc.utils.type(bibconf) == 'table' then
+    for _, value in pairs(bibconf) do
+      table.insert(meta.bibliography, stringify(value))
     end
   end
-  -- add dummy div to catch the created bibliography
+  -- add refs div to catch the created bibliography
   table.insert(doc.blocks, refs_div)
   -- resolve all citations
   doc = citeproc(doc)
@@ -115,8 +115,8 @@ end
 -- ID starts with "refs", followed by nothing but underscores and
 -- alphanumeric characters.
 local function create_topic_bibliography (div)
-  local name = div.identifier:match('^refs([_%w]*)$')
-  local bibfile = name and doc_meta['bibliography' .. name]
+  local name = div.identifier:match('^refs[-_]?([-_%w]*)$')
+  local bibfile = name and (doc_meta.bibliography or {})[name]
   if not bibfile then
     return nil
   end
