@@ -20,6 +20,13 @@ local utils = require 'pandoc.utils'
 local stringify = utils.stringify
 local run_json_filter = utils.run_json_filter
 
+--- get the type of meta object
+local metatype = pandoc.utils.type or
+  function (v)
+    local metatag = type(v) == 'table' and v.t and v.t:gsub('^Meta', '')
+    return metatag and metatag ~= 'Map' and metatag or type(v)
+  end
+
 --- Collection of all cites in the document
 local all_cites = {}
 --- Document meta value
@@ -64,7 +71,7 @@ local function resolve_doc_citations (doc)
   local meta = doc.meta
   local bibconf = meta.bibliography
   meta.bibliography = pandoc.MetaList{}
-  if pandoc.utils.type(bibconf) == 'table' then
+  if metatype(bibconf) == 'table' then
     for _, value in pairs(bibconf) do
       table.insert(meta.bibliography, stringify(value))
     end
