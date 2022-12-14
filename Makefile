@@ -1,4 +1,4 @@
-DIFF ?= diff --strip-trailing-cr -u
+DIFF ?= diff
 PANDOC ?= pandoc
 
 test: test/input.md multiple-bibliographies.lua
