@@ -42,4 +42,4 @@ jobs:
         run: apk add make
 
       - name: Test
-        run: make test
+        run: make test PANDOC_VERSION=${{ matrix.pandoc }}

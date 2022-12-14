@@ -1,0 +1,16 @@
+Multiple Bibliographies Demo
+
+Nietzsche (1872), Bellori (1672)
+
+References
+
+Bellori. 1672. Le Vite de’ Pittori, Scultori e Architetti Moderni.
+
+Nietzsche, Friedrich. 1872. Die Geburt Der Tragödie Aus Dem Geiste Der
+Musik.
+
+Recommended Reading
+
+Bätschmann, Oskar. 1985. Pygmalion Als Betrachter.
+
+Knuth, Donald E. 1986. The TeXbook.
