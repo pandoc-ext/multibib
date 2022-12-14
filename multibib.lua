@@ -1,5 +1,5 @@
 --[[
-multiple-bibliographies – create multiple bibliographies
+multibib – create multiple bibliographies
 
 Copyright © 2018-2022 Albert Krewinkel
 
