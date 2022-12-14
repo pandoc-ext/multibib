@@ -15,6 +15,8 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ]]
+PANDOC_VERSION:must_be_at_least '2.11'
+
 local List = require 'pandoc.List'
 local utils = require 'pandoc.utils'
 local stringify = utils.stringify
@@ -44,23 +46,11 @@ local citeproc
 if utils.citeproc then
   -- Built-in Lua function
   citeproc = utils.citeproc
-elseif PANDOC_VERSION >= "2.11" then
-  -- We use pandoc instead of pandoc-citeproc starting with pandoc 2.11
+else
+  -- Use pandoc as a citeproc processor
   citeproc = function (doc)
     local opts = {'--from=json', '--to=json', '--citeproc', '--quiet'}
     return run_json_filter(doc, 'pandoc', opts)
-  end
-else
-  local version = pandoc.pipe('pandoc-citeproc', {'--version'}, '')
-  local major, minor, patch = version:match 'pandoc%-citeproc (%d+)%.(%d+)%.?(%d*)'
-  major, minor, patch = tonumber(major), tonumber(minor), tonumber(patch)
-  local supports_quiet_flag =
-       major > 0
-    or minor > 14
-    or (minor == 14 and patch >= 5)
-  local opts = {FORMAT, supports_quiet_flag and '-q' or nil}
-  citeproc = function (doc)
-    return run_json_filter(doc, 'pandoc-citeproc', opts)
   end
 end
 
