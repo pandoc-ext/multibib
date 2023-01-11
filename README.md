@@ -7,7 +7,7 @@ This filter allows to create multiple bibliographies using
 YAML values and the file in which a bibliographic entry is
 specified.
 
-[CI badge]: https://img.shields.io/github/workflow/status/pandoc-ext/multibib/CI?logo=github
+[CI badge]: https://img.shields.io/github/actions/workflow/status/pandoc-ext/multibib/ci.yaml?logo=github&branch=main
 [CI workflow]: https://github.com/pandoc-ext/multibib/actions/workflows/ci.yaml
 
 The bibliographies must be defined in a map below the
