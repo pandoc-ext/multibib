@@ -60,12 +60,13 @@ Users of Quarto can install this filter as an extension with
     quarto install extension pandoc-ext/multibib
 
 and use it by adding `multibib` to the `filters` entry
-in their YAML header.
+in their YAML header. (You also need to add `validate-yaml: false`, as per [this discussion](https://github.com/quarto-dev/quarto-cli/issues/4139).)
 
 ``` yaml
 ---
 filters:
   - multibib
+validate-yaml: false
 ---
 ```
 
