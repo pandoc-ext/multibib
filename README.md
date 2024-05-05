@@ -39,6 +39,10 @@ Each refs-*x* div should have a matching entry *x* in the
 metadata. These divs are filled with citations from the respective
 bib-file.
 
+> [!IMPORTANT]
+> This filter works best with citation styles that use non-numeric
+> citation labels.
+
 
 Usage
 ------------------------------------------------------------------
