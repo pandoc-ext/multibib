@@ -43,11 +43,18 @@ local refs_div = pandoc.Div({}, pandoc.Attr('refs'))
 local refs_div_with_properties
 
 --- Run citeproc on a pandoc document
-local citeproc
-if utils.citeproc then
-  -- Built-in Lua function
-  citeproc = utils.citeproc
-else
+--
+-- Falls back to the external `pandoc-citeproc` filter if the built-in
+-- citeproc processor is not available. Tries to silence all citeproc
+-- warnings, which isn't possible in some versions.
+local citeproc = utils.citeproc
+if pcall(require, 'pandoc.log') and citeproc then
+  -- silence all warnings if possible
+  local log = require 'pandoc.log'
+  citeproc = function (...)
+    return select(2, log.silence(utils.citeproc, ...))
+  end
+elseif not citeproc then
   -- Use pandoc as a citeproc processor
   citeproc = function (doc)
     local opts = {'--from=json', '--to=json', '--citeproc', '--quiet'}
@@ -56,7 +63,7 @@ else
 end
 
 --- Resolve citations in the document by combining all bibliographies
--- before running pandoc-citeproc on the full document.
+-- before running citeproc on the full document.
 local function resolve_doc_citations (doc)
   -- combine all bibliographies
   local meta = doc.meta
