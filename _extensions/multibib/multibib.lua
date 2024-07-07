@@ -1,7 +1,7 @@
 --[[
 multibib – create multiple bibliographies
 
-Copyright © 2018-2022 Albert Krewinkel
+Copyright © 2018-2024 Albert Krewinkel
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -17,8 +17,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ]]
 PANDOC_VERSION:must_be_at_least '2.11'
 
-local List = require 'pandoc.List'
-local utils = require 'pandoc.utils'
+local pandoc = require 'pandoc'
+local List   = require 'pandoc.List'
+local utils  = require 'pandoc.utils'
 local stringify = utils.stringify
 local run_json_filter = utils.run_json_filter
 
