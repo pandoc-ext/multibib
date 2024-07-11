@@ -135,6 +135,13 @@ local function create_topic_bibliography (div)
   -- Set the classes and attributes as citeproc did it on refs_div
   div.classes = remove_duplicates(refs_div_with_properties.classes)
   div.attributes = refs_div_with_properties.attributes
+  if FORMAT == 'odt' or FORMAT == 'docx' then
+    -- Pandoc assignes the "Bibliography" to reference sections in Word, so
+    -- let's do it here, too, unless it's already set.
+    div.attributes['custom-style'] = div.attributes['custom-style']
+      or 'Bibliography'
+  end
+
   return div
 end
 
