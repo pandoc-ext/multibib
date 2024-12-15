@@ -48,11 +48,6 @@ local topic_refs = {}
 -- the output format and the attributes of cs:bibliography
 local refs_div_with_properties
 
--- Whether utils.citeproc() supports a 'quiet' argument
--- (it doesn't yet, but perhaps it will, in which case this
--- will use the appropriate pandoc version check)
-local supports_quiet_arg = false
-
 --- Run citeproc on a pandoc document
 --
 -- Falls back to the external `pandoc-citeproc` filter if the built-in
@@ -201,5 +196,5 @@ return {
     Meta = function (m) doc_meta = m end,
   },
   { Pandoc = resolve_doc_citations },
-  { Div = create_topic_bibliography }
+  { Div = create_topic_bibliography },
 }
