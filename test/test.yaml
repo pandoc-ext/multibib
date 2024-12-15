@@ -3,3 +3,4 @@ to: plain
 standalone: true
 filters:
   - multibib.lua
+  - multibib-renumber.lua
