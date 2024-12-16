@@ -50,9 +50,8 @@ local refs_div_with_properties
 
 --- Run citeproc on a pandoc document
 --
--- Falls back to the external `pandoc-citeproc` filter if the built-in
--- citeproc processor is not available. Tries to silence all citeproc
--- warnings, which isn't possible in some versions.
+-- Tries to silence all citeproc warnings, which isn't possible in some
+-- versions.
 local citeproc = utils.citeproc
 if pcall(require, 'pandoc.log') and citeproc then
   -- silence all warnings if possible
