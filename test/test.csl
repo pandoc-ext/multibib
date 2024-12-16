@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl"
+       class="in-text" version="1.0"
+       demote-non-dropping-particle="never"
+       page-range-format="chicago"
+       default-locale="en-GB">
+  <citation>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group prefix="[" suffix="]" delimiter=", ">
+        <text variable="citation-number"/>
+        <group delimiter="/">
+          <text variable="id"/>
+          <text variable="author"/>
+          <label variable="locator"/>
+          <text variable="locator"/>
+        </group>
+      </group>
+    </layout>
+  </citation>
+  <bibliography>
+    <sort>
+      <key variable="id"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" prefix="[" suffix="]"
+            display="left-margin"/>
+      <group delimiter=", " display="right-inline">
+        <names variable="author"/>
+        <text variable="title" font-style="italic"/>
+        <date date-parts="year" form="text" variable="issued"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
