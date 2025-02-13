@@ -5,7 +5,9 @@ bibliography:
   recommended-reading: test/secondary.bib
 nocite: '@Knu86, @Bae'
 ---
-@Nie72, @Bel
+[see @Nie72, Section 1], [@Bel]
+
+[@Knu86; @Bae]
 
 # References
 

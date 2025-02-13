@@ -1,5 +1,9 @@
 input-files: ['test/input.md']
 to: plain
 standalone: true
+metadata:
+  link-citations: true
 filters:
   - multibib.lua
+  - multibib-renumber.lua
+csl: test/test.csl
